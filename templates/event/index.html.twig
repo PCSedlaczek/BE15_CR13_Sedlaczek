@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All Events{% endblock %}
+
+{% block body %}
+
+{% for message in app.flashes('success') %}
+  <div class="alert alert-success">
+    {{ message }}
+  </div>
+{% endfor %}
+
+  <h2 class="page-header">All Events</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Event</th>
+        <th>Date</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+    {% for event in events %}
+      <tr>
+        <th scope="row">{{event.id}}</th>
+        <td>{{event.name}}</td>
+        <td>{{event.date | date}}</td>
+        <td>
+          <a href="/view/{{event.id}}" class="btn btn-success">View</a>
+          <a href="/edit/{{event.id}}" class="btn btn-default">Edit</a>
+          <a href="/delete/{{event.id}}" class="btn btn-danger">Delete</a>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
