@@ -5,6 +5,7 @@
   {% include "comp/detail.html.twig" %}
 
   <div class="py-3">
+    <a class="btn btn-info" href="{{event.url}}">Info</a>
     <a class="btn btn-success" href="/">Back</a>
     <a class="btn btn-warning" href="/edit/{{event.id}}">Edit</a>
     <a class="btn btn-danger" href="/delete/{{event.id}}">Delete</a>
