@@ -1,3 +1,8 @@
+CREATE TABLE category (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR (30) NOT NULL
+);
+
 CREATE TABLE location (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR (50) NOT NULL,
@@ -16,27 +21,29 @@ CREATE TABLE organizer (
   contact VARCHAR (50),
   email VARCHAR (255),
   phone VARCHAR (26),
+  img VARCHAR (100),
   url VARCHAR (255),
   FOREIGN KEY (location_id) REFERENCES location(id),
 );
 
 CREATE TABLE event (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR (100) NOT NULL,
+  title VARCHAR (100) NOT NULL,
+  subtitle VARCHAR (100),
   type VARCHAR (50),
-  date DATE,
-  start TIME,
-  end TIME,
-  timezone VARCHAR (5) DEFAULT 'CEST',
-  lead VARCHAR (255),
-  description TEXT,
+  category_id INT,
+  price DECIMAL (6,2),
   capacity INT,
   organizer_id INT,
   location_id INT,
-  category SET,
-  price DECIMAL (6,2),
+  date DATE NOT NULL,
+  start TIME,
+  end TIME,
+  lead VARCHAR (255),
+  description TEXT,
   img VARCHAR (100),
   url VARCHAR(255),
-  FOREIGN KEY (location_id) REFERENCES location(id),
   FOREIGN KEY (organizer_id) REFERENCES organizer(id)
+  FOREIGN KEY (location_id) REFERENCES location(id),
+  FOREIGN KEY (category_id) REFERENCES category(id)
 );
