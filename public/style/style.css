@@ -9,3 +9,11 @@
   rgba(214,238,250,1) 0%, 
   rgba(86,144,190,1) 100%);
 }
+
+.max-w {
+  max-width: 1000px;
+}
+
+a {
+  text-decoration: none
+}
