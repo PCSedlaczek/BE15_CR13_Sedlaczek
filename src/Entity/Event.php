@@ -46,7 +46,7 @@ class Event
     #[ORM\Column(type: 'string', length: 100, nullable: true)]
     private $img;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $url;
 
     #[ORM\ManyToOne(targetEntity: Location::class)]

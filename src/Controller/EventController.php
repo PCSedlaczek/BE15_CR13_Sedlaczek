@@ -16,8 +16,12 @@ class EventController extends AbstractController
   public function index(ManagerRegistry $doctrine): Response
   {
     $events = $doctrine->getRepository(Event::class)->findAll();
+    // $types = $doctrine->getRepository(Event::class)->findBy(['type' => $types]);
     return $this->render("event/index.html.twig",
-      ["events" => $events]
+      ["events" => $events,
+      // "type" => $types,
+      "display" => "d-none",
+      "link" => "stretched-link"]
     );
   }
 
@@ -25,19 +29,26 @@ class EventController extends AbstractController
   public function admin(ManagerRegistry $doctrine): Response
   {
     $events = $doctrine->getRepository(Event::class)->findAll();
+    // $types = $doctrine->getRepository(Event::class)->findBy(['type' => $types]);
     return $this->render("event/admin.html.twig",
-      ["events" => $events]
+      ["events" => $events,
+      // "type" => $types
+      ]
     );
   }
 
-  #[Route("/filter/{type}", name: "event_filter")]
-  public function filter(ManagerRegistry $doctrine, $type): Response
+  #[Route("/type/{type}", name: "event_type")]
+  public function type(ManagerRegistry $doctrine, $type): Response
   {
     $events = $doctrine->getRepository(Event::class)->findBy(['type' => $type]);
-    return $this->render("event/filter.html.twig", 
-      ["events" => $events]
+    return $this->render("event/type.html.twig", 
+      ["events" => $events,
+      "type" => $type,
+      "display" => "d-none",
+      "link" => "stretched-link"]
     );
   }
+
 
   #[Route("/event/{id}", name: "event_view")]
   public function view(ManagerRegistry $doctrine, $id): Response
