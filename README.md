@@ -38,7 +38,7 @@ Big Event Management Site
   - [x] Event delete option
 
 ## Bonus
-- [*] Filtering by event type (findBy method)
+- [x] Filtering by event type (findBy method)
 
 ## Extend
 - [x] Location table/entity
@@ -52,4 +52,4 @@ Big Event Management Site
 - [x] Send repository link through LMS
 - [x] Invite codefactorygit as collaborator
 
-Work time: 21:00 hrs
+Work time: 24:10 hrs
