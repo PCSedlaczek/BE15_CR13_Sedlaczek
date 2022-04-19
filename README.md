@@ -27,18 +27,18 @@ Big Event Management Site
 - [x] Insert test data into database
 
 ## Twig
-- [ ] Nice looking responsive design (Bootstrap/HTML/CSS)
+- [x] Nice looking responsive design (Bootstrap/HTML/CSS)
 
 ## CRUD
-- [*] CRUD interface for events
-  - [*] Event index page listing all events (name, date & time, image)
-  - [*] Event details/view page
-  - [*] Event update/edit page
-  - [*] Event create/add page
-  - [*] Event delete option
+- [x] CRUD interface for events
+  - [x] Event index page listing all events (name, date & time, image)
+  - [x] Event details/view page
+  - [x] Event update/edit page
+  - [x] Event create/add page
+  - [x] Event delete option
 
 ## Bonus
-- [ ] Filtering by event type (findBy method)
+- [*] Filtering by event type (findBy method)
 
 ## Extend
 - [x] Location table/entity
@@ -47,9 +47,9 @@ Big Event Management Site
 - [ ] File upload
 
 ## Finalize
-- [ ] Format documents in Visual Studio Code
+- [x] Format documents in Visual Studio Code
 - [x] Push files to GitHub repository
 - [x] Send repository link through LMS
-- [ ] Invite codefactorygit as collaborator
+- [x] Invite codefactorygit as collaborator
 
-Work time: 9:00 hrs
+Work time: 21:00 hrs
