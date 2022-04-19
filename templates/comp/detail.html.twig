@@ -1,0 +1,44 @@
+<div class="container max-w">
+
+  <div class="card shadow mb-3 p-0">
+    <div class="row g-0">
+      <div class="col-md-8 border-bottom p-0">
+        <img src="{{asset("img/" ~ event.img)}}" class="img-fluid rounded-start"
+          alt="{{event.title}} - {{event.subtitle}} | {{event.organizer.name}}">
+      </div>
+      <div class="col-md-4 border-bottom position-relative py-3">
+        <div class="card-body">
+          <h6 class="m-0">{{event.date | date('M') | upper}}</h6>
+          <p>{{event.date | date('d') | upper}}</p>
+          <h5 class="card-title">{{event.title}}</h5>
+          <h6 class="card-subtitle text-muted mb-3">{{event.subtitle}}</h6>
+          <p>by {{event.organizer.name}}</p>
+          <p class="position-absolute bottom-0">{{event.price == "0.00" ? "<span class='text-success'>Free</span>" :
+            "EUR" | currency_symbol ~ event.price}}</p>
+        </div>
+      </div>
+      <div class="col-md-8 p-4">
+        <div class="card-body">
+          <p class="fw-bold"> {{event.lead}}</p>
+          <h5 class="my-4">About this event</h5>
+          {{event.description | raw}}
+        </div>
+      </div>
+      <div class="col-md-4 py-4">
+        <div class="card-body">
+          <h6>Date and time</h6>
+          <p>{{event.date | date("D, M d, Y")}},<br>
+            {{event.start | date("G:i")}} -
+            {{event.end | date("G:i")}}
+            {{event.date | date("T")}}
+          </p>
+          <h6 class="mt-5">Location</h6>
+          <p>{{event.location.name}}</p>
+
+          <h6 class="mt-5">Type</h6>
+          <a href="/type/{{event.type}}" class="btn btn-sm btn-outline-secondary rounded-pill">{{event.type}}</a>
+
+        </div>
+      </div>
+    </div>
+  </div>

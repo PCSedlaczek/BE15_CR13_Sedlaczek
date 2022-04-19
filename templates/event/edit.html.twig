@@ -1,13 +1,14 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-<div class="container">
-  <h2 class="page-header">Edit Event</h2>
+<div class="container max-w">
+  <div class="card shadow mb-3 p-5">
+    <h2 class="page-header">Edit Event</h2>
 
-  {{form_start(form)}}
-  {{form_widget(form)}}
-  {{form_end(form)}}
+    {{form_start(form)}}
+    {{form_widget(form)}}
+    {{form_end(form)}}
 
-  <a class="btn btn-warning" href="/">Back</a>
+  </div>
 </div>
 {% endblock %}
