@@ -30,7 +30,7 @@ CREATE TABLE event (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR (100) NOT NULL,
   subtitle VARCHAR (100),
-  type VARCHAR (50),
+  type SET,
   category_id INT,
   price DECIMAL (6,2),
   capacity INT,
