@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\LocationRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: LocationRepository::class)]
@@ -33,18 +31,6 @@ class Location
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $url;
 
-    #[ORM\OneToMany(mappedBy: 'location', targetEntity: Event::class)]
-    private $location;
-
-    #[ORM\OneToMany(mappedBy: 'location', targetEntity: Organizer::class)]
-    private $organizers;
-
-    public function __construct()
-    {
-        $this->location = new ArrayCollection();
-        $this->organizers = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -58,6 +44,7 @@ class Location
     public function setName(string $name): self
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -66,9 +53,10 @@ class Location
         return $this->address;
     }
 
-    public function setAddress(string $address): self
+    public function setAddress(?string $address): self
     {
         $this->address = $address;
+
         return $this;
     }
 
@@ -80,6 +68,7 @@ class Location
     public function setZip(?int $zip): self
     {
         $this->zip = $zip;
+
         return $this;
     }
 
@@ -91,6 +80,7 @@ class Location
     public function setCity(?string $city): self
     {
         $this->city = $city;
+
         return $this;
     }
 
@@ -102,6 +92,7 @@ class Location
     public function setCountry(?string $country): self
     {
         $this->country = $country;
+
         return $this;
     }
 
@@ -113,63 +104,6 @@ class Location
     public function setUrl(?string $url): self
     {
         $this->url = $url;
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Event>
-     */
-    public function getLocation(): Collection
-    {
-        return $this->location;
-    }
-
-    public function addLocation(Event $location): self
-    {
-        if (!$this->location->contains($location)) {
-            $this->location[] = $location;
-            $location->setLocation($this);
-        }
-        return $this;
-    }
-
-    public function removeLocation(Event $location): self
-    {
-        if ($this->location->removeElement($location)) {
-            // set the owning side to null (unless already changed)
-            if ($location->getLocation() === $this) {
-                $location->setLocation(null);
-            }
-        }
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Organizer>
-     */
-    public function getOrganizers(): Collection
-    {
-        return $this->organizers;
-    }
-
-    public function addOrganizer(Organizer $organizer): self
-    {
-        if (!$this->organizers->contains($organizer)) {
-            $this->organizers[] = $organizer;
-            $organizer->setLocation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeOrganizer(Organizer $organizer): self
-    {
-        if ($this->organizers->removeElement($organizer)) {
-            // set the owning side to null (unless already changed)
-            if ($organizer->getLocation() === $this) {
-                $organizer->setLocation(null);
-            }
-        }
 
         return $this;
     }

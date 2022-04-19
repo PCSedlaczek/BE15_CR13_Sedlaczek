@@ -14,12 +14,15 @@ class Event
     private $id;
 
     #[ORM\Column(type: 'string', length: 100)]
-    private $name;
+    private $title;
+
+    #[ORM\Column(type: 'string', length: 100, nullable: true)]
+    private $subtitle;
 
     #[ORM\Column(type: 'string', length: 50, nullable: true)]
     private $type;
 
-    #[ORM\Column(type: 'date', nullable: true)]
+    #[ORM\Column(type: 'date')]
     private $date;
 
     #[ORM\Column(type: 'time', nullable: true)]
@@ -27,9 +30,6 @@ class Event
 
     #[ORM\Column(type: 'time', nullable: true)]
     private $end;
-
-    #[ORM\Column(type: 'string', length: 5, nullable: true)]
-    private $timezone;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $lead;
@@ -40,37 +40,47 @@ class Event
     #[ORM\Column(type: 'integer', nullable: true)]
     private $capacity;
 
-    #[ORM\ManyToOne(targetEntity: Organizer::class, inversedBy: 'event')]
-    public $organizer;
-
-    #[ORM\ManyToOne(targetEntity: Location::class, inversedBy: 'location')]
-    public $location;
-
-    #[ORM\Column(type: 'array', nullable: true)]
-    private $category = [];
-
     #[ORM\Column(type: 'decimal', precision: 6, scale: 2, nullable: true)]
     private $price;
 
     #[ORM\Column(type: 'string', length: 100, nullable: true)]
     private $img;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[ORM\Column(type: 'string', length: 255)]
     private $url;
+
+    #[ORM\ManyToOne(targetEntity: Location::class)]
+    public $location;
+
+    #[ORM\ManyToOne(targetEntity: Organizer::class)]
+    private $organizer;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getTitle(): ?string
     {
-        return $this->name;
+        return $this->title;
     }
 
-    public function setName(string $name): self
+    public function setTitle(string $title): self
     {
-        $this->name = $name;
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getSubtitle(): ?string
+    {
+        return $this->subtitle;
+    }
+
+    public function setSubtitle(string $subtitle): self
+    {
+        $this->subtitle = $subtitle;
+
         return $this;
     }
 
@@ -79,9 +89,10 @@ class Event
         return $this->type;
     }
 
-    public function setType(string $type): self
+    public function setType(?string $type): self
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -90,9 +101,10 @@ class Event
         return $this->date;
     }
 
-    public function setDate(?\DateTimeInterface $date): self
+    public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
         return $this;
     }
 
@@ -104,6 +116,7 @@ class Event
     public function setStart(?\DateTimeInterface $start): self
     {
         $this->start = $start;
+
         return $this;
     }
 
@@ -115,17 +128,7 @@ class Event
     public function setEnd(?\DateTimeInterface $end): self
     {
         $this->end = $end;
-        return $this;
-    }
 
-    public function getTimezone(): ?string
-    {
-        return $this->timezone;
-    }
-
-    public function setTimezone(?string $timezone): self
-    {
-        $this->timezone = $timezone;
         return $this;
     }
 
@@ -134,9 +137,10 @@ class Event
         return $this->lead;
     }
 
-    public function setLead(?string $lead): self
+    public function setLead(string $lead): self
     {
         $this->lead = $lead;
+
         return $this;
     }
 
@@ -148,6 +152,7 @@ class Event
     public function setDescription(?string $description): self
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -159,39 +164,7 @@ class Event
     public function setCapacity(?int $capacity): self
     {
         $this->capacity = $capacity;
-        return $this;
-    }
 
-    public function getOrganizer(): ?organizer
-    {
-        return $this->organizer;
-    }
-
-    public function setOrganizer(?organizer $organizer): self
-    {
-        $this->organizer = $organizer;
-        return $this;
-    }
-
-    public function getLocation(): ?location
-    {
-        return $this->location;
-    }
-
-    public function setLocation(?location $location): self
-    {
-        $this->location = $location;
-        return $this;
-    }
-
-    public function getCategory(): ?array
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?array $category): self
-    {
-        $this->category = $category;
         return $this;
     }
 
@@ -203,6 +176,7 @@ class Event
     public function setPrice(?string $price): self
     {
         $this->price = $price;
+
         return $this;
     }
 
@@ -214,6 +188,7 @@ class Event
     public function setImg(?string $img): self
     {
         $this->img = $img;
+
         return $this;
     }
 
@@ -225,19 +200,31 @@ class Event
     public function setUrl(string $url): self
     {
         $this->url = $url;
+
         return $this;
     }
 
+    public function getLocation(): ?Location
+    {
+        return $this->location;
+    }
 
-    
+    public function setLocation(?Location $location): self
+    {
+        $this->location = $location;
 
-    
+        return $this;
+    }
 
-    
+    public function getOrganizer(): ?Organizer
+    {
+        return $this->organizer;
+    }
 
-    
+    public function setOrganizer(?Organizer $organizer): self
+    {
+        $this->organizer = $organizer;
 
-
-
-    
+        return $this;
+    }
 }
